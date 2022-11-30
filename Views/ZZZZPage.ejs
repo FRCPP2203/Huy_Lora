@@ -1,0 +1,129 @@
+<%- contentFor('body') %>
+
+<div class="container">
+  <div class="col">
+    <img
+      src="Assets/Images/a.png"
+      class="img-fluid"
+      style="width: 300px"
+      alt="DUYTANLOGO"
+    />
+
+    <h5 class="text-center mt-2">
+      Hệ Thống Quan Trắc Trong Nông Nghiệp Ứng Dụng Mạng Không Dây LORA
+    </h5>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+              id="nodeALight" <%= data.STATUS1_OBJ.LIGHT === "1" ?
+              "checked":""%> />
+              <label class="form-check-label" for="nodeALight">Đèn</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+              id="nodeAPump" <%= data.STATUS1_OBJ.WATERPUMPL === "1" ?
+              "checked":""%> />
+              <label class="form-check-label" for="nodeAPump">Máy bơm</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+            <div>Nhiệt độ: <%= data.NODE_A_OBJ.NHIETDO%></div>
+            <div>Độ ẩm không khí: <%= data.NODE_A_OBJ.DOAM %></div>
+            <div>Độ ẩm đất: <%= data.NODE_A_OBJ.DOAMDAT %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+              id="nodeBLight" <%= data.STATUS2_OBJ.LIGHT === "1" ?
+              "checked":""%> />
+              <label class="form-check-label" for="nodeBLight">Đèn</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+              id="nodeBPump" <%= data.STATUS2_OBJ.WATERPUMPL === "1" ?
+              "checked":""%> />
+              <label class="form-check-label" for="nodeBPump">Máy bơm</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+            <div>Nhiệt độ: <%= data.NODE_B_OBJ.NHIETDO%></div>
+            <div>Độ ẩm không khí: <%= data.NODE_B_OBJ.DOAM %></div>
+            <div>Độ ẩm đất: <%= data.NODE_B_OBJ.DOAMDAT %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        background-color: #3737f4;
+        color: white;
+        width: fit-content;
+        height: 50px;
+        margin-top: 100px;
+        margin-left: 10px;
+        border-radius: 8px;
+        padding: 20px;
+      "
+    >
+      <h6>SINH VIÊN THỰC HIỆN: LÊ TRẦN BẢO HUY</h6>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("#nodeALight,#nodeBLight").click(function (e) {
+      const checked = $(this).attr("checked") !== undefined;
+      const on = !checked;
+      $(this).attr("checked", on);
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {};
+      switch ($(this).attr("id")) {
+        case "nodeALight":
+          xhttp.open("PUT", `/ZZZZ/light/STATUS1/${on ? "1" : "0"}`, true);
+          break;
+        case "nodeBLight":
+          xhttp.open("PUT", `/ZZZZ/light/STATUS2/${on ? "1" : "0"}`, true);
+          break;
+          defcault: break;
+      }
+      xhttp.send();
+    });
+
+    $("#nodeAPump,#nodeBPump").click(function (e) {
+      const checked = $(this).attr("checked") !== undefined;
+      const on = !checked;
+      $(this).attr("checked", on);
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {};
+      switch ($(this).attr("id")) {
+        case "nodeAPump":
+          xhttp.open("PUT", `/ZZZZ/pump/STATUS1/${on ? "1" : "0"}`, true);
+          break;
+        case "nodeBPump":
+          xhttp.open("PUT", `/ZZZZ/pump/STATUS2/${on ? "1" : "0"}`, true);
+          break;
+          defcault: break;
+      }
+      xhttp.send();
+    });
+  });
+</script>

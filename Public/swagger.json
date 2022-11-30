@@ -1,0 +1,878 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"IXXXX": {
+				"properties": {
+					"ZZZZ": {
+						"type": "string"
+					},
+					"WWWW": {
+						"type": "number",
+						"format": "double"
+					},
+					"TTTT": {
+						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"ZZZZ",
+					"WWWW"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IResponseSoftDelete": {
+				"properties": {
+					"acknowledged": {
+						"type": "boolean"
+					},
+					"modifiedCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"upsertedId": {
+						"type": "string"
+					},
+					"upsertedCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"matchedCount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"acknowledged",
+					"modifiedCount",
+					"upsertedId",
+					"upsertedCount",
+					"matchedCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IYYYY": {
+				"properties": {
+					"KKKK": {
+						"type": "string"
+					},
+					"TTTT": {
+						"type": "number",
+						"format": "double"
+					},
+					"JJJJ": {
+						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"KKKK"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "restful",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "tptindev"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/jobs": {
+			"get": {
+				"operationId": "ViewQueue",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/jobs/{type}/add": {
+			"post": {
+				"operationId": "PushToQueue",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "type",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {},
+								"additionalProperties": {},
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/XXXX/test/{id}": {
+			"get": {
+				"operationId": "XXXXGetOneTest",
+				"responses": {
+					"200": {
+						"description": "XXXX Test",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX/detail/{id}": {
+			"get": {
+				"operationId": "XXXXGetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX": {
+			"get": {
+				"operationId": "XXXXGetMany",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IXXXX"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX/trash": {
+			"get": {
+				"operationId": "XXXXTrash",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IXXXX"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX/create": {
+			"post": {
+				"operationId": "XXXXCreateOne",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Created"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IXXXX"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/XXXX/update/{id}": {
+			"put": {
+				"operationId": "XXXXUpdateOne",
+				"responses": {
+					"201": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Update"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IXXXX"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/XXXX/move-to-trash/{id}": {
+			"delete": {
+				"operationId": "XXXXSoftDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Moved To Trash",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IResponseSoftDelete"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Moved To Trash"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX/delete/{id}": {
+			"delete": {
+				"operationId": "XXXXDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Delete"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/test/{id}": {
+			"get": {
+				"operationId": "YYYYGetOneTest",
+				"responses": {
+					"200": {
+						"description": "YYYY Test",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/detail/{id}": {
+			"get": {
+				"operationId": "YYYYGetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY": {
+			"get": {
+				"operationId": "YYYYGetMany",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IYYYY"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/trash": {
+			"get": {
+				"operationId": "YYYYTrash",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IYYYY"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/create": {
+			"post": {
+				"operationId": "YYYYCreateOne",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Created"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IYYYY"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/YYYY/update/{id}": {
+			"put": {
+				"operationId": "YYYYUpdateOne",
+				"responses": {
+					"201": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Update"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IYYYY"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/YYYY/move-to-trash/{id}": {
+			"delete": {
+				"operationId": "YYYYSoftDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Moved To Trash",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IResponseSoftDelete"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Moved To Trash"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/delete/{id}": {
+			"delete": {
+				"operationId": "YYYYDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Delete"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/ZZZZ": {
+			"get": {
+				"operationId": "ZZZZPage",
+				"responses": {
+					"200": {
+						"description": "ZZZZ",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ZZZZ"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ZZZZ/light/{ref}/{status}": {
+			"put": {
+				"operationId": "ZZZZLight",
+				"responses": {
+					"201": {
+						"description": "Toggle"
+					},
+					"500": {
+						"description": "Can't Toggle"
+					}
+				},
+				"tags": [
+					"ZZZZ"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "ref",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "status",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/ZZZZ/pump/{ref}/{status}": {
+			"put": {
+				"operationId": "ZZZZPump",
+				"responses": {
+					"201": {
+						"description": "Toggle"
+					},
+					"500": {
+						"description": "Can't Toggle"
+					}
+				},
+				"tags": [
+					"ZZZZ"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "ref",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "status",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
